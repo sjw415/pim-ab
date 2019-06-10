@@ -45,10 +45,11 @@ public class MemberDAO {
 				ret = index;
 				break;
 			}
+			
 			index++;
 		}				
 		return ret;
-	}
+	}//aaaa
 	
 	public int insert(Member member) {
 		int ret = -1;
