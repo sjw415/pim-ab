@@ -73,8 +73,18 @@ public class MemberDAO {
 		return ret;
 	}	
 	public int delete(Member member) {		
-		int ret = -1; // 0 이상이면 해당 아이디가 존재하므로 삭제, -1이하이면 삭제 실패
-		
+		int ret = -1;
+		try {
+			int index = searchByID(member);
+			if(index > 0) { // 등록이 되어 있어야 삭제가 가능하므로 0이상이여야 한다.
+				fw = new MemberFileWriter(file);
+				memberList.remove(index);//member가아닌 index를 이용하여 삭제를 한다.
+				fw.saveMember(memberList);
+				ret = 0;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 		return ret;
 	}
 	public void printMemberList() {

@@ -9,6 +9,7 @@ import controller.MemberService;
 import controller.MemberServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,7 +26,7 @@ public class MemberViewController implements Initializable {
 	@FXML	private Button btnCreate;
 	@FXML	private Button btnUpdate;
 	@FXML	private Button btnDelete;
-	
+	@FXML	private Button btnMessageBox;
 	@FXML	private Button btnExecute;
 	@FXML	private TextArea taExecute;
 	@FXML	private TextField tfExecute;
@@ -66,11 +67,18 @@ public class MemberViewController implements Initializable {
 				(observable, oldValue, newValue) -> showMemberInfo(newValue));
 
 		btnCreate.setOnMouseClicked(event -> handleCreate());		
-		// btnDelete.setOnMouseClicked(e -> handleDelete());		
+		btnDelete.setOnMouseClicked(event -> handleDelete());		
 		btnExecute.setOnMouseClicked(event -> handleExecute());	
+		btnMessageBox.setOnMouseClicked(event -> handleMessageBox());
 		
 		loadMemberTableView();
 	}
+	
+	@FXML
+	private void handleMessageBox() {
+		this.showAlert("메세지 박스가 나타납니다.");
+	}
+	
 	String str = ""; // 인스턴스 변수 - 객체 변수, 객체가 존재하는 동안 메모리에 존재
 	@FXML 
 	private void handleExecute() { // event source, listener, handler
@@ -146,7 +154,7 @@ public class MemberViewController implements Initializable {
 		Alert alert = new Alert(AlertType.INFORMATION);
         alert.initOwner(mainApp.getRootStage());
         alert.setTitle("Ȯ��");
-        alert.setContentText("Ȯ�� : " + message);            
+        alert.setContentText("경고 : " + message);            
         alert.showAndWait();
 	}
 
