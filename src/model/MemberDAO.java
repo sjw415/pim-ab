@@ -71,7 +71,7 @@ public class MemberDAO {
 		int ret = -1; // 0 이상이면 해당 아이디가 존재하므로 수정, -1이하이면 수정 실패		
 		
 		
-		return ret;
+		return ret;//ss
 	}	
 	public int delete(Member member) {		
 		int ret = -1;

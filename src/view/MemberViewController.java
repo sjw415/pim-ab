@@ -124,7 +124,7 @@ public class MemberViewController implements Initializable {
 			data.add(newMember);			
 			tableViewMember.setItems(data);
 			memberService.create(newMember);
-		} else
+		} else//aa
 			showAlert("ID 입력오류");
 	}
 	@FXML 
