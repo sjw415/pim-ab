@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="790.0" stylesheets="@member.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MemberViewController">
    <children>
-      <Label layoutX="190.0" layoutY="521.0" text="Copyright. @2019 EGYOU" textFill="#422bb5">
+      <Label layoutX="190.0" layoutY="521.0" text="Copyright. @2019 SJW" textFill="#422bb5">
          <font>
             <Font name="System Italic" size="14.0" />
          </font>
@@ -38,9 +38,12 @@
             <Label text="아이디" />
             <Label text="암호" GridPane.rowIndex="2" />
             <Label text="이름" GridPane.rowIndex="4" />
+            <Label text="주민등록번호" GridPane.rowIndex="5" />
             <TextField fx:id="tfID" prefHeight="23.0" prefWidth="198.0" GridPane.columnIndex="1" />
-            <TextField fx:id="tfName" prefHeight="23.0" prefWidth="208.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />            
-            <PasswordField fx:id="tfPW" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <PasswordField fx:id="tfPW" prefHeight="23.0" prefWidth="208.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />            
+            <TextField fx:id="tfName" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="tfBirthday" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            
          </children>
       </GridPane>
       <Button id="btnCrete" fx:id="btnCreate" layoutX="18.0" layoutY="190.0" mnemonicParsing="false" onMouseClicked="#handleCreate" text="등록" />
@@ -49,9 +52,10 @@
       
       <TableView fx:id="tableViewMember" layoutX="18.0" layoutY="225.0" prefHeight="285.0" prefWidth="364.0">
         <columns>
-          <TableColumn fx:id="columnID" prefWidth="95.0" text="아이디" />
-          <TableColumn fx:id="columnPW" prefWidth="96.0" text="암호" />
-            <TableColumn fx:id="columnName" prefWidth="96.0" text="이름" />
+          <TableColumn fx:id="columnID" prefWidth="90.0" text="아이디" />
+          <TableColumn fx:id="columnPW" prefWidth="90.0" text="암호" />
+          <TableColumn fx:id="columnName" prefWidth="90.0" text="이름" />
+          <TableColumn fx:id="columnBirthday" prefWidth="90.0" text="생년월일" />
         </columns>
       </TableView>
       <Button fx:id="btnExecute" layoutX="717.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#handleExecute" text="실행" />

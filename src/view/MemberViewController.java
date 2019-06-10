@@ -34,6 +34,7 @@ public class MemberViewController implements Initializable {
 	@FXML	private TextField tfID;
 	@FXML	private PasswordField tfPW;
 	@FXML	private TextField tfName;
+	@FXML	private TextField tfBirthday;
 	@FXML	private TextField tfMobilePhone;
 	
 	@FXML 	private TableView<Member> tableViewMember;
@@ -62,6 +63,7 @@ public class MemberViewController implements Initializable {
 		columnName.setCellValueFactory(cvf -> cvf.getValue().unameProperty());				
 		columnID.setCellValueFactory(cvf -> cvf.getValue().uidProperty());
 		columnPW.setCellValueFactory(cvf -> cvf.getValue().upwProperty());
+		columnPW.setCellValueFactory(cvf -> cvf.getValue().ubirthdayProperty());
 		
 		tableViewMember.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showMemberInfo(newValue));
@@ -97,12 +99,14 @@ public class MemberViewController implements Initializable {
 			tfID.setText(member.getUid());
 			tfPW.setText(member.getUpw());
 			tfName.setText(member.getUname());
+			tfBirthday.setText(member.getUbirthday());
 //			tfMobilePhone.setText(member.getMobilePhone());
 		}
 		 else {
 			 tfID.setText("");
 			 tfPW.setText("");
 		     tfName.setText("");
+		     tfBirthday.setText("");
 //		     tfMobilePhone.setText("010");
 		 }
 	}
@@ -120,7 +124,7 @@ public class MemberViewController implements Initializable {
 	private void handleCreate() { // event source, listener, handler
 		if(tfID.getText().length() > 0) {
 			Member newMember = 
-					new Member(tfID.getText(), tfPW.getText(), tfName.getText(), "");
+					new Member(tfID.getText(), tfPW.getText(), tfName.getText(),tfBirthday.getText(), "");
 			data.add(newMember);			
 			tableViewMember.setItems(data);
 			memberService.create(newMember);
@@ -129,7 +133,7 @@ public class MemberViewController implements Initializable {
 	}
 	@FXML 
 	private void handleUpdate() {
-		Member newMember = new Member(tfID.getText(), tfPW.getText(), tfName.getText(), tfMobilePhone.getText());
+		Member newMember = new Member(tfID.getText(), tfPW.getText(), tfName.getText(), tfBirthday.getText(),tfMobilePhone.getText());
 
 		int selectedIndex = tableViewMember.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {

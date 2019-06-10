@@ -18,7 +18,8 @@ public class MemberFileWriter {
 				fw.write(m.getUid() + "\t");
 				fw.write(m.getUpw() + "\t");
 				fw.write(m.getUname() + "\n");
-				fw.flush();
+				fw.write(m.getUbirthday() + "\n");
+				fw.flush();//write메소드를 처리해주는 메소드이다.
 			} catch (IOException e) {
 			}			
 		}
