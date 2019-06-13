@@ -62,7 +62,7 @@ public class Member { // DB의 레코드와 매핑되는 객체
     	return this.ubirthday.get();
     }
     public void setUbirthday(String ubirthday) {
-    	this.upw.set(ubirthday);
+    	this.ubirthday.set(ubirthday);
     }
     public StringProperty ubirthdayProperty() {
         return ubirthday;

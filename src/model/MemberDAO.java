@@ -85,18 +85,33 @@ public class MemberDAO {
 	}
 	
 	public int update(Member member) {
-		int ret = -1; // 0 이상이면 해당 아이디가 존재하므로 수정, -1이하이면 수정 실패		
-		
-		
-		return ret;//ss
+		int ret = -1;
+		try {
+			int index = searchByID(member);
+			if(index > 0) { //
+				fw = new MemberFileWriter(file);
+				/*
+				 * ArrayList 객체를 작업에 따라 수정하고, 이를 MemberFileWriter 객체의 saveMember() 메소드에 전달
+				 */
+				memberList.set(index, member); // MemberList의 해당 인덱스 요소에 새로운 요 설 
+				fw.saveMember(memberList);
+				ret = 0;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+		return ret;
 	}	
 	public int delete(Member member) {		
 		int ret = -1;
 		try {
 			int index = searchByID(member);
-			if(index > 0) { // 등록이 되어 있어야 삭제가 가능하므로 0이상이여야 한다.
+			if(index >= 0) { //
 				fw = new MemberFileWriter(file);
-				memberList.remove(index);//member가아닌 index를 이용하여 삭제를 한다.
+				memberList.remove(member);
+				/*
+				 * ArrayList 객체를 작업에 따라 수정하고, 이를 MemberFileWriter 객체의 saveMember() 메소드에 전달
+				 */
 				fw.saveMember(memberList);
 				ret = 0;
 			}

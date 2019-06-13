@@ -41,6 +41,7 @@ public class MemberViewController implements Initializable {
 	@FXML	private TableColumn<Member, String> columnName;
 	@FXML	private TableColumn<Member, String> columnID;
 	@FXML	private TableColumn<Member, String> columnPW;
+	@FXML	private TableColumn<Member, String> columnBirthday;
 	//@FXML	private TableColumn<Member, String> columnMobilePhone;
 	
 	// Member : model이라고도 하고 DTO, VO 라고도 함
@@ -63,7 +64,7 @@ public class MemberViewController implements Initializable {
 		columnName.setCellValueFactory(cvf -> cvf.getValue().unameProperty());				
 		columnID.setCellValueFactory(cvf -> cvf.getValue().uidProperty());
 		columnPW.setCellValueFactory(cvf -> cvf.getValue().upwProperty());
-		columnPW.setCellValueFactory(cvf -> cvf.getValue().ubirthdayProperty());
+		columnBirthday.setCellValueFactory(cvf -> cvf.getValue().ubirthdayProperty());
 		
 		tableViewMember.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showMemberInfo(newValue));
@@ -125,18 +126,24 @@ public class MemberViewController implements Initializable {
 		if(tfID.getText().length() > 0) {
 			Member newMember = 
 					new Member(tfID.getText(), tfPW.getText(), tfName.getText(),tfBirthday.getText(), "");
+			if(memberService.findByUid(newMember) < 0 ) {
 			data.add(newMember);			
 			tableViewMember.setItems(data);
 			memberService.create(newMember);
-		} else//aa
+			
+		} else
 			showAlert("ID 입력오류");
+		}
 	}
 	@FXML 
 	private void handleUpdate() {
-		Member newMember = new Member(tfID.getText(), tfPW.getText(), tfName.getText(), tfBirthday.getText(),tfMobilePhone.getText());
+		Member newMember = new Member(tfID.getText(), tfPW.getText(), tfName.getText(), tfBirthday.getText(),"");
 
 		int selectedIndex = tableViewMember.getSelectionModel().getSelectedIndex();
-		if (selectedIndex >= 0) {
+		if(selectedIndex != memberService.findByUid(newMember)) {
+			showAlert("아이디를 수정하면 업데이트가 안됩니다.");
+		}
+		else if (selectedIndex >= 0) {
 			tableViewMember.getItems().set(selectedIndex, newMember);
 			memberService.update(newMember);			
 		} else {
@@ -147,6 +154,7 @@ public class MemberViewController implements Initializable {
 	@FXML 
 	private void handleDelete() {
 		int selectedIndex = tableViewMember.getSelectionModel().getSelectedIndex();
+		//uid
 		if (selectedIndex >= 0) {
 			memberService.delete(tableViewMember.getItems().remove(selectedIndex));			
 		} else {
