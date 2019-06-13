@@ -42,6 +42,7 @@ public class MemberViewController implements Initializable {
 	@FXML	private TableColumn<Member, String> columnID;
 	@FXML	private TableColumn<Member, String> columnPW;
 	@FXML	private TableColumn<Member, String> columnBirthday;
+	@FXML	private TableColumn<Member, String> columnage;
 	//@FXML	private TableColumn<Member, String> columnMobilePhone;
 	
 	// Member : model이라고도 하고 DTO, VO 라고도 함
@@ -50,7 +51,6 @@ public class MemberViewController implements Initializable {
 	// 목록 : 이중연결리스트는 아니지만 리스트의 특징과 배열 특징을 잘 혼용해 놓은 클래스 ArrayList 
 	ArrayList<Member> memberList;
 	MemberService memberService;
-	
 	public MemberViewController() {
 		
 	}
@@ -65,6 +65,7 @@ public class MemberViewController implements Initializable {
 		columnID.setCellValueFactory(cvf -> cvf.getValue().uidProperty());
 		columnPW.setCellValueFactory(cvf -> cvf.getValue().upwProperty());
 		columnBirthday.setCellValueFactory(cvf -> cvf.getValue().ubirthdayProperty());
+		columnage.setCellValueFactory(cvf -> cvf.getValue().uageProperty());
 		
 		tableViewMember.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showMemberInfo(newValue));
@@ -101,6 +102,7 @@ public class MemberViewController implements Initializable {
 			tfPW.setText(member.getUpw());
 			tfName.setText(member.getUname());
 			tfBirthday.setText(member.getUbirthday());
+			.setText(member.getUage());
 //			tfMobilePhone.setText(member.getMobilePhone());
 		}
 		 else {
@@ -125,7 +127,7 @@ public class MemberViewController implements Initializable {
 	private void handleCreate() { // event source, listener, handler
 		if(tfID.getText().length() > 0) {
 			Member newMember = 
-					new Member(tfID.getText(), tfPW.getText(), tfName.getText(),tfBirthday.getText(), "");
+					new Member(tfID.getText(), tfPW.getText(), tfName.getText(),tfBirthday.getText(),,"");
 			if(memberService.findByUid(newMember) < 0 ) {
 			data.add(newMember);			
 			tableViewMember.setItems(data);
@@ -137,7 +139,7 @@ public class MemberViewController implements Initializable {
 	}
 	@FXML 
 	private void handleUpdate() {
-		Member newMember = new Member(tfID.getText(), tfPW.getText(), tfName.getText(), tfBirthday.getText(),"");
+		Member newMember = new Member(tfID.getText(), tfPW.getText(), tfName.getText(), tfBirthday.getText(),age, "");
 
 		int selectedIndex = tableViewMember.getSelectionModel().getSelectedIndex();
 		if(selectedIndex != memberService.findByUid(newMember)) {

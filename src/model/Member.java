@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDate;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -12,20 +13,22 @@ public class Member { // DB의 레코드와 매핑되는 객체
 	private StringProperty uname;
 	private StringProperty ubirthday;
 	private final StringProperty mobilePhone;
+	private StringProperty uage;
 	/*
     private final IntegerProperty zipcode;
     private ObjectProperty<LocalDate> birthday;
 	*/
 	public Member() {
-		this(null, null, null, null, null);
+		this(null, null, null, null, null, null);
 	}
 	
-	public Member(String id, String pw, String name, String birthday, String mobilePhone) {
+	public Member(String id, String pw, String name, String birthday, String age, String mobilePhone ) {
 		this.uid = new SimpleStringProperty(id);
 		this.uname = new SimpleStringProperty(name);
 		this.upw = new SimpleStringProperty(pw);
 		this.ubirthday = new SimpleStringProperty(birthday);
 		this.mobilePhone = new SimpleStringProperty(mobilePhone);
+		this.uage = new SimpleStringProperty(age);
 	}
 	
 	public String getUid() {
@@ -77,5 +80,15 @@ public class Member { // DB의 레코드와 매핑되는 객체
 	}
     public StringProperty mobilePhoneProperty() {
         return mobilePhone;
+    }
+    
+    public String getUage() {
+		return this.uage.get();
+	}
+	public void setUage(String uage) {
+		this.uage.set(uage);
+	}
+    public StringProperty uageProperty() {
+        return uage;
     }
 }

@@ -50,16 +50,17 @@
       <Button id="btnUpdate" fx:id="btnUpdate" layoutX="69.0" layoutY="190.0" mnemonicParsing="false" onMouseClicked="#handleUpdate" text="수정" />
       <Button id="btnDelete" fx:id="btnDelete" layoutX="121.0" layoutY="190.0" mnemonicParsing="false" onMouseClicked="#handleDelete" text="삭제" />
       
-      <TableView fx:id="tableViewMember" layoutX="18.0" layoutY="225.0" prefHeight="285.0" prefWidth="364.0">
+      <TableView fx:id="tableViewMember" layoutX="18.0" layoutY="225.0" prefHeight="285.0" prefWidth="757.0">
         <columns>
-          <TableColumn fx:id="columnID" prefWidth="90.0" text="아이디" />
-          <TableColumn fx:id="columnPW" prefWidth="90.0" text="암호" />
-          <TableColumn fx:id="columnName" prefWidth="90.0" text="이름" />
-          <TableColumn fx:id="columnBirthday" prefWidth="90.0" text="생년월일" />
+          <TableColumn fx:id="columnID" prefWidth="130.0" text="아이디" />
+          <TableColumn fx:id="columnPW" prefWidth="130.0" text="암호" />
+          <TableColumn fx:id="columnName" prefWidth="130.0" text="이름" />
+          <TableColumn fx:id="columnBirthday" prefWidth="130.0" text="주민등록번호" />
+           <TableColumn fx:id="columnBirthday" prefWidth="130.0" text="생년월일" />
         </columns>
       </TableView>
       <Button fx:id="btnExecute" layoutX="717.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#handleExecute" text="실행" />
-      <TextArea fx:id="taExecute" layoutX="402.0" layoutY="64.0" prefHeight="446.0" prefWidth="374.0" />
+      <TextArea fx:id="taExecute" layoutX="402.0" layoutY="64.0" prefHeight="141.0" prefWidth="374.0" />
       <TextField fx:id="tfExecute" layoutX="401.0" layoutY="35.0" prefHeight="23.0" prefWidth="287.0" promptText="입력" />
       <ButtonBar layoutX="173.0" layoutY="182.0" prefHeight="40.0" prefWidth="67.0">
         <buttons>
